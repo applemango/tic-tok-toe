@@ -1,4 +1,6 @@
-* {margin: 0;padding: 0;}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+* {margin: 0;padding: 0;font-family: 'Montserrat', sans-serif;}
 body,div#main {background-color: #ED4C67;}
 body {
     width: 100vw;
@@ -30,8 +32,8 @@ div#board > div p {
     user-select: none;
     font-size: 128px;
     position: relative;
-    top: -52px;
-    left: 12px;
+    top: -40px;
+    left: 11px;
 }
 .press_space_key {
     user-select: none;
