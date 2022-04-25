@@ -50,9 +50,10 @@ function player_click(n){
         computer_turn();
     }
 }
+
 function computer_turn(){
     if(player_turn == false && winner == false){
-        let computer_move = Math.floor(Math.random() * 9);
+        let computer_move = computer_move_();
         if(board[computer_move] == 0){
             player_turn = true;
             board[computer_move] = computer_symbol;
@@ -64,6 +65,48 @@ function computer_turn(){
         }
     }
 }
+
+function computer_move_(){
+    //var win_combos_ = ((0,1),(1,2),(3,4),(4,5),(6,7),(7,8),(0,3),(1,4),(2,5),(3,6),(4,7),(5,8),(0,4),(1,5),(2,6),(3,7),(4,8),(6,4),(8,0))
+    var win_combos_ = [[0,1],[1,2],[3,4],[4,5],[6,7],[7,8],[0,3],[1,4],[2,5],[3,6],[4,7],[5,8],[0,4],[1,5],[2,6],[3,7],[4,8],[6,4],[8,0]];
+    //var win_combos__ = (2,0,5,3,8,6,6,7,8,0,1,2,8,3,4,4,0,2,4)
+    var win_combos__ = [2,0,5,3,8,6,6,7,8,0,1,2,8,3,4,4,0,2,4];
+    
+    var win_combos___ = [0,2,6,8]
+
+    for(let i = 0; i < win_combos_.length; i++){
+        if(board[win_combos_[i][0]] == computer_symbol && board[win_combos_[i][1]] == computer_symbol){
+            if(board[win_combos__[i]] == 0){
+                return win_combos__[i];
+            }
+        }
+    }
+
+    for(let i = 0; i < win_combos_.length; i++){
+        if(board[win_combos_[i][0]] == player_symbol && board[win_combos_[i][1]] == player_symbol){
+            if(board[win_combos__[i]] == 0){
+                return win_combos__[i];
+            }
+        }
+    }
+
+    if(board[4] == 0){
+        return 4;
+    }
+
+    var frag = false;
+    for(let i = 0; i < win_combos___.length; i++){
+        if(board[win_combos___[i]] == 0){
+            frag = true;
+        }
+    }
+    if(frag == true){
+        return win_combos___[Math.floor(Math.random() * win_combos___.length)];
+    }
+
+    return Math.floor(Math.random() * 9)
+}
+
 function check_win(){
     for(let i = 0; i < win_combos.length; i++){
         if(board[win_combos[i][0]] == player_symbol && board[win_combos[i][1]] == player_symbol && board[win_combos[i][2]] == player_symbol){
