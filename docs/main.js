@@ -72,6 +72,10 @@ function computer_move_(){
             return win_combos[i][0];
         }
     }
+    if (board[5] == board[7] && board[5] == player_symbol && board[8] == 0) { return 8; }
+    else if (board[1] == board[3] && board[1] == player_symbol && board[0] == 0) { return 0; }
+    else if (board[1] == board[5] && board[1] == player_symbol && board[2] == 0) { return 2; }
+    else if (board[3] == board[7] && board[3] == player_symbol && board[6] == 0) { return 6; }
     if(board[4] == 0){return 4;}
     if (board[0]==0 || board[2]==0 || board[6]==0 || board[8]==0) {
         var a = [0,2,6,8]
