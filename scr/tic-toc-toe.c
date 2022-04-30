@@ -28,7 +28,7 @@ void print_board() {
 }
 int computer_move() {
     int len = sizeof(board) / sizeof(int);
-    printf("%d", len);
+    //printf("%d", len);
     for (int i = 0; i < 7; i++){
         int b0 = board[win_combos[i][0]];
         int b1 = board[win_combos[i][1]];

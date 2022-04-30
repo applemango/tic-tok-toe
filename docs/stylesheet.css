@@ -36,6 +36,7 @@ div#board > div p {
     left: 11px;
 }
 .press_space_key {
+    display: inline-block;
     user-select: none;
     text-align: center;
     width: 390px;
@@ -46,4 +47,7 @@ div#board > div p {
     font-size: 20px;
     color: #fff;
     z-index: 20;
+}
+.h1 :not(.press_space_key) {
+    display: none;
 }

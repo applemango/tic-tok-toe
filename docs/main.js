@@ -83,7 +83,6 @@ function computer_move_(){
     } else {
         return Math.floor(Math.random() * 9)
     }
-    return "error";
 }
 function check_win(){
     for(let i = 0; i < win_combos.length; i++){
