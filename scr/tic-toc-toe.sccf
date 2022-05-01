@@ -1,0 +1,98 @@
+var board = [0,0,0,0,0,0,0,0,0]
+var player_turn = true
+var winner = null
+var end = false
+var player_symbol = p
+var computer_symbol = c
+var win_combos = [1,2,3,4,5,6,7,8,9,1,4,7,3,6,9,1,5,9,3,5,7]
+var result = null
+
+var ii = null
+var ii1 = null
+var ii2 = null
+var ii3 = null
+
+func print_board(){
+    console.log()
+    console.log(board[1]+++board[2]+++board[3])
+    console.log(board[4]+++board[5]+++board[6])
+    console.log(board[7]+++board[8]+++board[7])
+}
+func computer_move(){
+    result = math.random(1,9)
+}
+func player_move(){
+    result = input(Enter+++a+++number+++between+++1+++and+++9:)
+}
+
+func check_win(){
+    result = false
+    for(i,7){
+        ii = i*3
+        ii1 = ii-2
+        ii2 = ii-1
+        ii3 = ii
+
+        ii1 = board[win_combos[ii1]]
+        ii2 = board[win_combos[ii2]]
+        ii3 = board[win_combos[ii3]]
+        if(ii1 == player_symbol){
+            if(ii2 == player_symbol){
+                if(ii3 == player_symbol){
+                    result = true
+                    winner = player_symbol
+                    end = true
+                }
+            }
+        }
+    }
+    if(result != true){
+        if(board[1] != 0){
+            if(board[2] != 0){
+                if(board[3] != 0){
+                    if(board[4] != 0){
+                        if(board[5] != 0){
+                            if(board[6] != 0){
+                                if(board[7] != 0){
+                                    if(board[8] != 0){
+                                        if(board[9] != 0){
+                                            result = true
+                                            winner = false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+func start(){
+    while(end == false){
+        print_board()
+        if(player_turn == true){
+            player_move()
+            if(board[result] == 0){
+                board.replace(result,player_symbol)
+                player_turn = false
+            }
+        }
+        if(player_turn == false){
+            computer_move()
+            if(board[result] == 0){
+                board.replace(result,computer_symbol)
+                player_turn = true
+            }
+        }
+        check_win()
+        if(result == true){
+            end = true
+            console.log(game_end)
+        }
+    }
+}
+
+start()
