@@ -1,18 +1,10 @@
-html_data = "<head><meta name='viewport' content='width=device-width, initial-scale=1.0'><link rel='stylesheet' href='stylesheet.css'><meta charset='utf-8'><title>tic toc toe</title><head><body><div id='main'><div id='board'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div><div></div></body>";
-document.querySelector("html").innerHTML += html_data;
+document.querySelector("html").innerHTML = "<head><meta name='viewport' content='width=device-width, initial-scale=1.0'><link rel='stylesheet' href='stylesheet.css'><meta charset='utf-8'><title>tic toc toe</title><head><body><div id='main'><div id='board'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div><div></div></body>";
 const board_element = document.querySelectorAll("#board > div");
 const press_space_key = document.querySelector("body > div:nth-child(2)")
 document.addEventListener('keydown', keydown);
-board_element[0].addEventListener("click", function(e){player_click(0);});
-board_element[1].addEventListener("click", function(e){player_click(1);});
-board_element[2].addEventListener("click", function(e){player_click(2);});
-board_element[3].addEventListener("click", function(e){player_click(3);});
-board_element[4].addEventListener("click", function(e){player_click(4);});
-board_element[5].addEventListener("click", function(e){player_click(5);});
-board_element[6].addEventListener("click", function(e){player_click(6);});
-board_element[7].addEventListener("click", function(e){player_click(7);});
-board_element[8].addEventListener("click", function(e){player_click(8);});
-
+board_element.forEach(function(element, index){
+    element.addEventListener("click", function(e){player_click(index);});
+});
 let board = [0,0,0,0,0,0,0,0,0];
 let player_turn = true;
 let winner = false;
@@ -30,12 +22,13 @@ const win_combos = [
     [2,4,6]
 ];
 function start(){
-    for(let i = 0; i < board_element.length; i++){board_element[i].innerHTML = "";}
+    for(let i = 0; i < board_element.length; i++){
+        board_element[i].innerHTML = "";
+    }
     board = [0,0,0,0,0,0,0,0,0];
     player_turn = true;
     winner = false;
     end = false;
-    computer_turn();
 }
 function player_click(n){
     if(board[n] == 0 && player_turn == true && winner == false){
@@ -104,27 +97,17 @@ function check_win(){
     }
     if(end == true){
         if(winner == "player"){
-            var inners ="<h1>you win<br>Press space key to play again</h1>";
+            press_space_key.innerHTML ="<h1>you win<br>Press space key to play again</h1>";
         }else if(winner == "computer"){
-            var inners ="<h1>you lose<br>Press space key to play again</h1>";
+            press_space_key.innerHTML ="<h1>you lose<br>Press space key to play again</h1>";
         } else {
-            var inners ="<h1>tie<br>Press space key to play again</h1>";
+            press_space_key.innerHTML ="<h1>tie<br>Press space key to play again</h1>";
         }
-        press_space_key.innerHTML = inners;
         press_space_key.classList.add("press_space_key");
     }
 }
 function keydown(e){
-    var key_name = e.keyCode
-    if(key_name == 32){
-        if(end == true){
-            press_space_key.classList.remove("press_space_key");
-            start();
-        }
-    }
-}
-function board_element_main_click(){
-    if(end == true || press_space_key.classList == "press_space_key"){
+    if(e.key == " " && end == true){
         press_space_key.classList.remove("press_space_key");
         start();
     }
